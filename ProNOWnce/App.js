@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 const ENDPOINT = "http://72.19.107.126:5000/word";
 
@@ -46,8 +46,31 @@ export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>{this.state.word}</Text>
-                <Text>More work needed to be done here!</Text>
+                <Text style={styles.title}>Pick one of these options.</Text>
+                <View style={styles.buttons}>
+                    <View style={styles.leftColumn}>
+                        <Button
+                            onPress={() => { Alert.alert('Right Answer.') }}
+                            title="Option 1"
+                        />
+                        <Button
+                            onPress={() => { Alert.alert('Wrong Answer.') }}
+                            title="Option 2"
+                        />
+                        {/* </View> */}
+                        <View style={styles.rightColumn}>
+                            <Button
+                                onPress={() => { Alert.alert('Wrong Answer.') }}
+                                title="Option 3"
+                            />
+                            <Button
+                                onPress={() => { Alert.alert('Wrong Answer.') }}
+                                title="Option 4"
+                            />
+                            {/* </View> */}
+                        </View>
+                    </View>
+                </View>
             </View>
         );
     }
@@ -60,4 +83,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    title: {
+        // paddingLeft: '5'
+      },
+      buttons: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      },
+      leftColumn: {
+        flexDirection: 'column',
+        right: 50,
+        top: 70,
+        alignContent: 'space-between',
+      },
+      rightColumn: {
+        flexDirection: 'column',
+        left: 100,
+        bottom: 70,
+        alignContent: 'space-between',
+      },
+      boxes: {
+        marginBottom: 150,
+      }
 });
