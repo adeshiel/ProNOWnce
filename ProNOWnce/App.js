@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
 
-import Directions from './Directions'
+import Directions from 'ProNOWnce\app\components\Buttons\Directions.js'
 
 const styles = StyleSheet.create({
     container: {
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     },
 });
 
-
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Welcome',
@@ -54,11 +53,7 @@ class HomeScreen extends React.Component {
                         onPress={() => navigate('About')}
                         title="What's this?"/>
                   </View>
-                  <View style={styles.btn}>
-                    <Button
-                        onPress={() => navigate('Directions')}
-                        title="Directions"/>
-                  </View>
+
                   </View>
 
             </View>
@@ -69,7 +64,7 @@ class HomeScreen extends React.Component {
 const App = StackNavigator({
   Home: { screen: HomeScreen },
   Word: { screen: Word },
-  Directions: { screen: Directions},
+  About: { screen: Directions},
 })
 
 export default App;
