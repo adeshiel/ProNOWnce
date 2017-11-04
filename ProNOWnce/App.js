@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        fontSize: 40,
+        color:'blue',
+        fontSize: 50,
         bottom: '20%',
         fontStyle: 'italic',
         fontWeight: 'bold',
@@ -40,6 +41,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height:'100%',
         alignItems:'center',                
+    },
+
+    whiteBackground: {
+        position: 'relative',
+        bottom: '20%',
+        backgroundColor: '#FFFFFF',
+        padding: 0.5,
     }
 });
 
@@ -58,7 +66,9 @@ class HomeScreen extends React.Component {
                     >
                 {this.props.children}
                 </Image>
-                <Text style={styles.title}>proNOWnce</Text>
+                <View style={styles.whiteBackground}>
+                    <Text style={styles.title}>proNOWnce</Text>
+                </View>
                   <View style={styles.buttons}>
                   <View style={styles.btn}>
                     <Button
