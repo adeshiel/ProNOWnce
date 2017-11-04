@@ -8,7 +8,7 @@ export default class Directions extends React.Component {
         return (
              <View style={styles.container}>
         <Image source={
-          require('../../../img/directions.jpg')}
+          require('../../../img/directions.png')}
             style={styles.img}
             >
           {this.props.children}
