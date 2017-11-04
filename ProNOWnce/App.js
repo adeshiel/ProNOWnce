@@ -1,24 +1,31 @@
 import React from 'react';
-import { StyleSheet, Image, Text, View, Button, Alert } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import {
+    StyleSheet,
+    Image,
+    Text,
+    View,
+    Button,
+    Alert
+} from 'react-native';
+import {StackNavigator} from 'react-navigation';
 import Word from './Word';
+import Directions from './app/components/Buttons/Directions';
 
-// import Directions from './app/components/Buttons/Directions';
-import Speech from './Speech';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     title: {
-        fontSize: 40,
+        color: 'blue',
+        fontSize: 50,
         bottom: '20%',
         fontStyle: 'italic',
         fontWeight: 'bold',
         // textDecorationLine: 'underline',
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto'
     },
 
     buttons: {
@@ -34,43 +41,45 @@ const styles = StyleSheet.create({
         flex: 1,
         width: null,
         height: null,
-        position:'absolute',
-        width:'100%',
+        position: 'absolute',
+        width: '100%',
         justifyContent: 'center',
-        height:'100%',
-        alignItems:'center',                
+        height: '100%',
+        alignItems: 'center'
+    },
+
+    whiteBackground: {
+        position: 'relative',
+        bottom: '20%',
+        backgroundColor: '#FFFFFF',
+        padding: 0.5
     }
 });
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
+    static navigationOptions = {
+        title: 'Welcome'
+    };
 
     render() {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
-                {/* <Image source={
-                    require('./img/speech.png')}
-                    style={styles.img}
-                    >
-                {this.props.children}
-                </Image> */}
-                <Text style={styles.title}>proNOWnce</Text>
-                  <View style={styles.buttons}>
-                  <View style={styles.btn}>
-                    <Button
-                        onPress={() => navigate('Word')}
-                        title="Begin"/>
-                  </View>
-                  <View style={styles.btn}>
-                    <Button
-                        onPress={() => navigate('About')}
-                        title="What's this?"/>
-                  </View>
+                <Image source={require('./img/speech.png')} style={styles.img}>
+                    {this.props.children}
+                </Image>
+                <View style={styles.whiteBackground}>
+                    <Text style={styles.title}>proNOWnce</Text>
+                </View>
+                <View style={styles.buttons}>
+                    <View style={styles.btn}>
+                        <Button onPress={() => navigate('Word')} title="Begin"/>
+                    </View>
+                    <View style={styles.btn}>
+                        <Button onPress={() => navigate('About')} title="What's this?"/>
+                    </View>
 
-                  </View>
+                </View>
 
             </View>
         );
@@ -78,9 +87,14 @@ class HomeScreen extends React.Component {
 }
 
 const App = StackNavigator({
-  Home: { screen: HomeScreen },
-  Word: { screen: Word },
-  About: { screen: Speech},
+    Home: {
+        screen: HomeScreen
+    },
+    Word: {
+        screen: Word
+    }, About: {
+        screen: Directions
+    }
 })
 
 export default App;

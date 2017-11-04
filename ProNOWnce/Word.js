@@ -3,8 +3,18 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 import {default as Sound} from 'react-native-sound';
 
-const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
-const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
+
+//Replace whoosh with the link from APi
+// var whoosh = new Sound('http://72.19.107.126:5000/pron/arroyo-a', Sound.MAIN_BUNDLE, (error) => {
+//   if (error) {
+//     console.log('failed to load the sound', error);
+//     return;
+//   }
+//   // loaded successfully
+//   console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+// });
+
+const ENDPOINT = "http://72.19.107.126:5000/word"
 
 const styles = StyleSheet.create({
     container: {
@@ -12,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     buttons: {
         flexDirection: 'row',
@@ -52,11 +62,18 @@ export default class Word extends React.Component {
             correctChoice: "",
             streak: 0
         }
+    
+    }
+    _onHideUnderlay(){
+        this.setState({ pressStatus: false });
+      }
+    _onShowUnderlay(){
+    this.setState({ pressStatus: true });
     }
 
     async getWords() {
         try {
-            let res = await fetch(`${ENDPOINT_WORD}`);
+            let res = await fetch(`${ENDPOINT}`);
             let resJSON = await res.json();
             let prons = resJSON
                 .pron
@@ -135,8 +152,11 @@ export default class Word extends React.Component {
     // ["word", "curse", "jagged"]; //TODO: Change the list to format to [[word1,
     // sfx1,sfx2],[word2, sfx1,sfx2]] var chose =
     // words[Math.floor(Math.random()*words.length)]; return chose; }
-
     render() {
+        function checkCorrect() {
+
+        }
+        var buttonColor = 'blue'
         return (
             <View style={styles.container}>
                 <View style={{
