@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     title: {
         // paddingLeft: '5'
@@ -24,7 +25,15 @@ const styles = StyleSheet.create({
         margin: 20
     },
     btn: {
-        margin: 40
+        margin: 10
+    },
+    scoreBoard: {
+        //alignContent: 'center',
+        //justifyContent: 'flex-start',
+        top: -175,
+        //left: '5%',
+        width: 100,
+        height: 30,
     }
 });
 
@@ -43,7 +52,7 @@ export default class Word extends React.Component {
             let res = await fetch(`${ENDPOINT}`);
             let resJSON = await res.json();
 
-            this.setState({word: resJSON.word});
+            this.setState({ word: resJSON.word });
             return resJSON.word;
         } catch (error) {
             console.log(error);
@@ -62,41 +71,54 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Pick one of these options.</Text>
+                <View style={{top: -150}}>
+                    <Text>Score: 4</Text>
+                </View>
+                <View style={{top: -100}}>
+                    <Text>Word</Text>
+                </View>
+                <Text style={styles.title}>Choose the correct pronunciation.</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Right Answer.')
-                            }}
-                                title="Option 1"/>
+                                    Alert.alert('Right Answer.')
+                                }}
+                                title="Omae" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Option 2"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Wa" />
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Option 3"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Mo" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Option 4"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Shin" />
                         </View>
 
                     </View>
+                </View>
+                <View>
+                    <Button style={{width: 50}}
+                        title='Submit'
+                        onPress={() => {
+                            Alert.alert('Please wait for submission functionality.')
+                        }} />
                 </View>
             </View>
         );

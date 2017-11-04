@@ -14,7 +14,7 @@ class Home extends React.Component {
         const { navigate } = this.props.navigation;
         return (
           <Button
-            title="Go to Jane's profile"
+            title="Go to JoJo's profile"
             onPress={() =>
               navigate('Profile', { name: 'Jane' })
             }
