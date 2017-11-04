@@ -40,16 +40,7 @@ export default class App extends React.Component {
                 <Text style={styles.title}>{this.state.word}</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
-                        <Button
-                            onPress={() => { Alert.alert('Right Answer.') }} //
-                            title="Option 1"
-                        />
-                        <Button
-                            onPress={() => { Alert.alert('Wrong Answer.') }}
-                            title="Option 2"
-                        />
-                        {/* </View> */}
-                        <View style={styles.rightColumn}>
+                        <View style={styles.btn}>
                             <Button
                                 onPress={() => {
                                 Alert.alert('Right Answer.')
