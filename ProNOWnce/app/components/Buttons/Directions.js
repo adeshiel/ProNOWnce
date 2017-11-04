@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View, Button} from 'react-native';
 
-class Directions extends React.Component {
+export default class Directions extends React.Component {
     showDirections() {
         console.log('hello')
     }
