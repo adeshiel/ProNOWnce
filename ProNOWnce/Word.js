@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
+import Directions from './app/components/Buttons/Directions'
 
 const styles = StyleSheet.create({
     container: {
@@ -62,6 +63,7 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <View><Directions/></View>
                 <Text style={styles.title}>Pick one of these options.</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
