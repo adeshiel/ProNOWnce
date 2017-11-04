@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, Alert} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
 const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
@@ -46,7 +46,9 @@ export default class Word extends React.Component {
         this.state = {
             word: "",
             prons: [],
-            currentChoice: ""
+            currentChoice: "",
+            isCorrect: false,
+            streak: 0,
         }
     }
 
@@ -64,8 +66,17 @@ export default class Word extends React.Component {
     choose(ix) {
         console.log(ix);
         this.setState(() => {
-            return {currentChoice: ix};
+            return { currentChoice: ix };
         });
+    }
+
+    checkCorrect(ix) {
+        if (ix == 'correct') {
+            
+            this.setState(() => {
+                return { isCorrect: true};
+            });
+        }
     }
 
     componentDidMount() {
@@ -85,9 +96,9 @@ export default class Word extends React.Component {
                 }}>
                     <Text
                         style={{
-                        fontSize: 20,
-                        textAlign: 'center'
-                    }}>Score: 4</Text>
+                            fontSize: 20,
+                            textAlign: 'center'
+                        }}>Score: 4</Text>
                 </View>
                 <View style={{
                     top: -65
@@ -99,61 +110,61 @@ export default class Word extends React.Component {
                 }}>
                     <Text
                         style={{
-                        fontStyle: 'italic'
-                    }}>Choose the correct pronunciation.</Text>
+                            fontStyle: 'italic'
+                        }}>Choose the correct pronunciation.</Text>
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                this.choose(1);
-                            }}
-                                title="Choice 1"/>
+                                    this.choose(1);
+                                }}
+                                title="Choice 1" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                this.choose(2);
-                            }}
-                                title="Choice 2"/>
+                                    this.choose(2);
+                                }}
+                                title="Choice 2" />
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                this.choose(3);
-                            }}
-                                title="Choice 3"/>
+                                    this.choose(3);
+                                }}
+                                title="Choice 3" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                this.choose(4);
-                            }}
-                                title="Choice 4"/>
+                                    this.choose(4);
+                                }}
+                                title="Choice 4" />
                         </View>
                     </View>
                 </View>
                 <View>
                     <Text
                         style={{
-                        fontSize: 20,
-                        textAlign: 'center',
-                        top: -20
-                    }}>Current choice: {this.state.currentChoice}</Text>
+                            fontSize: 20,
+                            textAlign: 'center',
+                            top: -20
+                        }}>Current choice: {this.state.currentChoice}</Text>
                 </View>
                 <View
                     style={{
-                    width: 100,
-                    top: -10
-                }}>
+                        width: 100,
+                        top: -10
+                    }}>
                     <Button
                         title='Submit'
                         onPress={() => {
-                        Alert.alert('Please wait for submission functionality.')
-                    }}/>
+                            this.checkCorrect(this.state.currentChoice)
+                        }} />
                 </View>
             </View>
         );
