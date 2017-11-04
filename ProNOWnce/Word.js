@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, Button, Alert, TouchableHighlight} from 'react-native';
 
 const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
 const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
@@ -35,7 +35,11 @@ const styles = StyleSheet.create({
     choicebuttons: {
         marginLeft: 30,
         marginRight: 30,
-    }
+    },
+    selected: {
+        borderWidth: 1,
+        borderColor: 'red',
+    },
 });
 
 export default class Word extends React.Component {
@@ -45,8 +49,16 @@ export default class Word extends React.Component {
 
         this.state = {
             word: "",
-            prons: []
+            prons: [],
+            pressStatus: false
         }
+    
+    }
+    _onHideUnderlay(){
+        this.setState({ pressStatus: false });
+      }
+    _onShowUnderlay(){
+    this.setState({ pressStatus: true });
     }
 
     async getWords() {
@@ -68,14 +80,22 @@ export default class Word extends React.Component {
     // ["word", "curse", "jagged"]; //TODO: Change the list to format to [[word1,
     // sfx1,sfx2],[word2, sfx1,sfx2]] var chose =
     // words[Math.floor(Math.random()*words.length)]; return chose; }
-
     render() {
+        function changeButtonColor() {
+            if (this.color === 'blue') {
+                this.color = 'yellow';
+            }
+            else {
+                this.color = 'blue';
+            }
+        }
+        var buttonColor = 'blue'
         return (
             <View style={styles.container}>
                 <View style={{ top: -65 }}>
                     <Text style={{ fontSize: 20, textAlign: 'center' }}>Score: 4</Text>
                 </View>
-                <View style={{ top: -65 }}>
+                <View style={{ top: -35 }}>
                     <Text style={styles.word}>{this.state.word}</Text>
                 </View>
                 <View style={{ top: -45 }}>
@@ -119,25 +139,30 @@ export default class Word extends React.Component {
                     <View style={styles.choicebuttons}>
                         <Button
                             title="1"
-                            onPress={() => {}}                            
+                            color={buttonColor}
+                            onPress={(buttonColor) => {changeButtonColor(buttonColor)}}                            
                         />
                     </View>
                     <View style={styles.choicebuttons}>
                         <Button
                             title="2"
-                            onPress={() => {}}                            
+                            color={buttonColor}
+                            onPress={(buttonColor) => {changeButtonColor(buttonColor)}}                            
                         />
                     </View>
                     <View style={styles.choicebuttons}>
-                        <Button
+                        <Button 
                             title="3"
-                            onPress={() => {}}                            
+                            color={buttonColor}
+                            onPress={(buttonColor) => {changeButtonColor(buttonColor)}}                            
                         />
                     </View>
                     <View style={styles.choicebuttons}>
                         <Button
                             title="4"
-                            onPress={() => {}}
+                            color={buttonColor}
+                            onPress={(buttonColor) => {changeButtonColor(buttonColor)}
+                            }
                         />
                     </View>
                 </View>
