@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-import Directions from './app/components/Buttons/Directions'
 
 const ENDPOINT = "http://72.19.107.126:5000/word"
 
@@ -81,7 +80,6 @@ export default class Word extends React.Component {
                 <View>
                     <Text>Choose the correct pronunciation.</Text>
                 </View>
-                <View><Directions/></View>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
