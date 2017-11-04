@@ -1,27 +1,59 @@
 import React from 'react';
-import {Linking, Dimensions, AppRegistry, StyleSheet, Text, View, Button} from 'react-native';
+import {Image, Linking, Dimensions, AppRegistry, StyleSheet, Text, View, Button} from 'react-native';
 
 var {height, width} = Dimensions.get('window');
 
 export default class Directions extends React.Component {
     render() {
         return (
-            <View style={styles.myView}>
-             <Text style={{color: 'blue'}}
-                onPress={() => Linking.openURL('https://github.com/adeshiel/ProNOWnce/blob/master/README.md')}>
-                Click Here for Directions!
+             <View style={styles.container}>
+        <Image source={
+          require('../../../img/directions.jpg')}
+            style={styles.img}
+            >
+          {this.props.children}
+          <View
+            style={styles.borderedText}>
+          <Text 
+            onPress={() => {
+                Linking.openURL('https://github.com/adeshiel/ProNOWnce/blob/master/README.md')
+                }}
+            style={styles.directiontxt}
+          >
+              Click here for Directions!
             </Text>
-            </View>
-
+        </View>
+        </Image> 
+      </View>        
         );
     }
 }
 
 const styles = StyleSheet.create({
-    myView:{
-        paddingLeft:width/3,
-        paddingTop: height/3,
+    container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    },
+    img:{
+        flex: 1,
+        width: null,
+        height: null,
+        position:'absolute',
+        width:'100%',
+        justifyContent: 'center',
+        height:'100%',
+        alignItems:'center',
+    },
+    directiontxt:{
+        fontWeight:'bold',
+        color:'#FFFFFF',
+        fontSize:30,
+    },
+    borderedText:{
+        padding:20,
+        borderWidth:3,
+        borderColor:'#FFFFFF'
     },
 });
-
-AppRegistry.registerComponent('Directions', ()=> Directions);

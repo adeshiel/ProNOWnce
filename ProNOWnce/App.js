@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { StyleSheet, Image, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
 
@@ -30,6 +30,17 @@ const styles = StyleSheet.create({
     btn: {
         marginBottom: 40
     },
+    
+    img: {
+        flex: 1,
+        width: null,
+        height: null,
+        position:'absolute',
+        width:'100%',
+        justifyContent: 'center',
+        height:'100%',
+        alignItems:'center',                
+    }
 });
 
 class HomeScreen extends React.Component {
@@ -41,6 +52,12 @@ class HomeScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
+                <Image source={
+                    require('./img/speech.png')}
+                    style={styles.img}
+                    >
+                {this.props.children}
+                </Image>
                 <Text style={styles.title}>proNOWnce</Text>
                   <View style={styles.buttons}>
                   <View style={styles.btn}>
