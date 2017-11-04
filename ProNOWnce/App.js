@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import Word from './Word';
 
 import Directions from './app/components/Buttons/Directions';
-
+import Speech from './Speech';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -64,7 +64,7 @@ class HomeScreen extends React.Component {
 const App = StackNavigator({
   Home: { screen: HomeScreen },
   Word: { screen: Word },
-  About: { screen: Directions},
+  About: { screen: Speech},
 })
 
 export default App;
