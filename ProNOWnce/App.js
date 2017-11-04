@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
+import Directions from 'ProNOWnce\app\components\Buttons\Directions.js'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -62,6 +63,7 @@ class HomeScreen extends React.Component {
 const App = StackNavigator({
   Home: { screen: HomeScreen },
   Word: { screen: Word },
+  About: {screen: Directions},
 })
 
 export default App;
