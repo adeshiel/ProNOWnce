@@ -34,10 +34,10 @@ def word():
     :return:
     """
 
-    word = Word(random_word())
+    word = Word("arroyo")
 
-    word.speak()
-    word.messup()
+    # word.speak()
+    # word.messup()
     l.debug("Displaying %s", word.word)
 
     prons = sorted([word.word, word.word + "-a", word.word + "-b", word.word + "-c"], key=lambda x: random.random())
