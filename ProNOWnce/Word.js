@@ -47,8 +47,8 @@ export default class Word extends React.Component {
             word: "",
             prons: [],
             currentChoice: "",
-            isCorrect: false,
-            streak: 0,
+            correctChoice: "",
+            streak: 0
         }
     }
 
@@ -56,6 +56,13 @@ export default class Word extends React.Component {
         try {
             let res = await fetch(`${ENDPOINT_WORD}`);
             let resJSON = await res.json();
+            let prons = resJSON
+                .pron
+                .map((value, index) => `${ENDPOINT_PRON}/${value}`);
+
+            this.setState({word: resJSON.word, pron: prons, correctChoice: resJSON.correct});
+
+            console.log(this.state);
 
             return resJSON.word;
         } catch (error) {
@@ -69,14 +76,47 @@ export default class Word extends React.Component {
             return { currentChoice: ix };
         });
     }
-
-    checkCorrect(ix) {
-        if (ix == 'correct') {
-            
+    
+    isCorrect(ix) {
+        if (this.state.currentChoice === this.state.correctChoice) {
             this.setState(() => {
-                return { isCorrect: true};
+                return {streak: this.state.streak + 1};
+            });
+            this.getWords();
+        }
+        else {
+            this.setState(() => {
+                return {streak: 0};
             });
         }
+    }
+
+    playSound(url) {
+        // ReactNativeAudioStreaming.play("http://72.19.107.126:5000/pron/squander",
+        // {showIniOSMediaCenter: true, showInAndroidNotifications: true}); Load the
+        // sound file 'whoosh.mp3' from the app bundle See notes below about preloading
+        // sounds within initialization code below.
+        var whoosh = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
+            if (error) {
+                console.log('failed to load the sound', error);
+                return;
+            }
+            // loaded successfully
+            console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+
+            // Play the sound with an onEnd callback
+            whoosh.play((success) => {
+                if (success) {
+                    console.log('successfully finished playing');
+                } else {
+                    console.log('playback failed due to audio decoding errors');
+                    // reset the player to its uninitialized state (android only) this is the only
+                    // option to recover after an error occured and use the player again
+                    whoosh.reset();
+                }
+            });
+        });
+
     }
 
     componentDidMount() {
@@ -163,7 +203,7 @@ export default class Word extends React.Component {
                     <Button
                         title='Submit'
                         onPress={() => {
-                            this.checkCorrect(this.state.currentChoice)
+                            this.checkCorrect()
                         }} />
                 </View>
             </View>
