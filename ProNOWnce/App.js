@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
 
-import Directions from 'ProNOWnce\app\components\Buttons\Directions.js'
+import Directions from './app/components/Buttons/Directions';
 
 const styles = StyleSheet.create({
     container: {
