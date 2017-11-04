@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 
+import {default as Sound} from 'react-native-sound';
+
 const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
 const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
 
@@ -59,7 +61,7 @@ export default class Word extends React.Component {
                 .pron
                 .map((value, index) => `${ENDPOINT_PRON}/${value}`);
 
-            this.setState({word: resJSON.word, pron: prons, correctChoice: resJSON.correct});
+            this.setState({word: resJSON.word, pron: prons, correctChoice: resJSON.correct + 1});
 
             console.log(this.state);
 
@@ -71,6 +73,7 @@ export default class Word extends React.Component {
 
     choose(ix) {
         console.log(ix);
+        this.playSound(this.state.pron[ix-1]);
         this.setState(() => {
             return {currentChoice: ix};
         });
@@ -81,6 +84,8 @@ export default class Word extends React.Component {
         // {showIniOSMediaCenter: true, showInAndroidNotifications: true}); Load the
         // sound file 'whoosh.mp3' from the app bundle See notes below about preloading
         // sounds within initialization code below.
+        console.log(url);
+
         var whoosh = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
                 console.log('failed to load the sound', error);
