@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
-const ENDPOINT = "http://72.19.107.126:5000/word"
+const ENDPOINT = "http://72.19.107.126:5000/word";
 
 const styles = StyleSheet.create({
     container: {
@@ -50,8 +50,8 @@ export default class Word extends React.Component {
         try {
             let res = await fetch(`${ENDPOINT}`);
             let resJSON = await res.json();
-            
 
+            console.log(resJSON);
             this.setState({ word: resJSON.word });
             return resJSON.word;
         } catch (error) {
