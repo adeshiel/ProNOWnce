@@ -89,8 +89,11 @@ export default class Word extends React.Component {
         }
         else {
             this.setState(() => {
-                return {streak: 0};
+                return {streak: this.state.streak - 1};
             });
+            Alert.alert(`Right Answer is ${this.state.correctChoice}`);
+            this.playSound(this.state.pron[this.state.correctChoice-1]);
+            this.getWords();
         }
     }
 
@@ -143,7 +146,7 @@ export default class Word extends React.Component {
                         style={{
                             fontSize: 20,
                             textAlign: 'center'
-                        }}>Score: 4</Text>
+                        }}>Score: {this.state.streak}</Text>
                 </View>
                 <View style={{
                     top: -65
@@ -208,7 +211,7 @@ export default class Word extends React.Component {
                     <Button
                         title='Submit'
                         onPress={() => {
-                            this.checkCorrect()
+                            this.isCorrect()
                         }} />
                 </View>
             </View>
