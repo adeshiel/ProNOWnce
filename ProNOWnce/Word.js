@@ -15,6 +15,7 @@ import {default as Sound} from 'react-native-sound';
 // });
 
 const ENDPOINT = "http://72.19.107.126:5000/word"
+const ENDPOINT_PRON = "http://72.19.107.126:5000/pron"
 
 const styles = StyleSheet.create({
     container: {

@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
     },
     directiontxt:{
         fontWeight:'bold',
-        color:'#FFFFFF',
+        color:'#000000',
         fontSize:30,
     },
     borderedText:{
         padding:20,
         borderWidth:3,
-        borderColor:'#FFFFFF'
+        borderColor:'#000000'
     },
 });
