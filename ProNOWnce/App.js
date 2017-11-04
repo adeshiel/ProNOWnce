@@ -3,7 +3,7 @@ import { StyleSheet, Image, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
 
-import Directions from './app/components/Buttons/Directions';
+// import Directions from './app/components/Buttons/Directions';
 import Speech from './Speech';
 const styles = StyleSheet.create({
     container: {
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     btn: {
         marginBottom: 40
     },
-    
     img: {
         flex: 1,
         width: null,
@@ -52,12 +51,12 @@ class HomeScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Image source={
+                {/* <Image source={
                     require('./img/speech.png')}
                     style={styles.img}
                     >
                 {this.props.children}
-                </Image>
+                </Image> */}
                 <Text style={styles.title}>proNOWnce</Text>
                   <View style={styles.buttons}>
                   <View style={styles.btn}>

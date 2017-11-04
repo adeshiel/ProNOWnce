@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     },
     buttons: {
         flexDirection: 'row',
-        top: -50,
+        top: -50
     },
     leftColumn: {
         flexDirection: 'column',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
     choicebuttons: {
         marginLeft: 30,
-        marginRight: 30,
+        marginRight: 30
     }
 });
 
@@ -45,7 +45,8 @@ export default class Word extends React.Component {
 
         this.state = {
             word: "",
-            prons: []
+            prons: [],
+            currentChoice: ""
         }
     }
 
@@ -60,6 +61,13 @@ export default class Word extends React.Component {
         }
     }
 
+    choose(ix) {
+        console.log(ix);
+        this.setState(() => {
+            return {currentChoice: ix};
+        });
+    }
+
     componentDidMount() {
         this.getWords();
     }
@@ -72,76 +80,75 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ top: -65 }}>
-                    <Text style={{ fontSize: 20, textAlign: 'center' }}>Score: 4</Text>
+                <View style={{
+                    top: -65
+                }}>
+                    <Text
+                        style={{
+                        fontSize: 20,
+                        textAlign: 'center'
+                    }}>Score: 4</Text>
                 </View>
-                <View style={{ top: -65 }}>
+                <View style={{
+                    top: -65
+                }}>
                     <Text style={styles.word}>{this.state.word}</Text>
                 </View>
-                <View style={{ top: -45 }}>
-                    <Text style={{ fontStyle: 'italic' }}>Choose the correct pronunciation.</Text>
+                <View style={{
+                    top: -45
+                }}>
+                    <Text
+                        style={{
+                        fontStyle: 'italic'
+                    }}>Choose the correct pronunciation.</Text>
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Right Answer.')
-                                }}
-                                title="Choice 1" />
+                                this.choose(1);
+                            }}
+                                title="Choice 1"/>
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Wrong Answer.')
-                                }}
-                                title="Choice 2" />
+                                this.choose(2);
+                            }}
+                                title="Choice 2"/>
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Wrong Answer.')
-                                }}
-                                title="Choice 3" />
+                                this.choose(3);
+                            }}
+                                title="Choice 3"/>
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Wrong Answer.')
-                                }}
-                                title="Choice 4" />
+                                this.choose(4);
+                            }}
+                                title="Choice 4"/>
                         </View>
                     </View>
                 </View>
-                <View style={{ flexDirection: 'row', top: -40 }}>
-                    <View style={styles.choicebuttons}>
-                        <Button
-                            title="1"
-                            onPress={() => {}}                            
-                        />
-                    </View>
-                    <View style={styles.choicebuttons}>
-                        <Button
-                            title="2"
-                            onPress={() => {}}                            
-                        />
-                    </View>
-                    <View style={styles.choicebuttons}>
-                        <Button
-                            title="3"
-                            onPress={() => {}}                            
-                        />
-                    </View>
-                    <View style={styles.choicebuttons}>
-                        <Button
-                            title="4"
-                            onPress={() => {}}
-                        />
-                    </View>
+                <View>
+                    <Text
+                        style={{
+                        fontSize: 20,
+                        textAlign: 'center',
+                        top: -20
+                    }}>Current choice: {this.state.currentChoice}</Text>
                 </View>
-                <View style={{ width: 100, top: -10}}>
+                <View
+                    style={{
+                    width: 100,
+                    top: -10
+                }}>
                     <Button
                         title='Submit'
                         onPress={() => {
