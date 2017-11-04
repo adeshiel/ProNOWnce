@@ -1,21 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import Directions from './app/components/Buttons/Directions'
 
 const ENDPOINT = "http://72.19.107.126:5000/word"
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
-    },
-    title: {
-        // paddingLeft: '5'
+        justifyContent: 'center',
     },
     buttons: {
         flexDirection: 'row',
-        // alignItems: 'center', justifyContent: 'space-around'
     },
     leftColumn: {
         flexDirection: 'column',
@@ -30,6 +28,12 @@ const styles = StyleSheet.create({
     },
     word: {
         fontSize: 40,
+        margin: 10
+    },
+    scoreBoard: {
+        top: -175,
+        width: 100,
+        height: 30,
     }
 });
 
@@ -49,7 +53,7 @@ export default class Word extends React.Component {
             let resJSON = await res.json();
             
 
-            this.setState({word: resJSON.word});
+            this.setState({ word: resJSON.word });
             return resJSON.word;
         } catch (error) {
             console.log(error);
@@ -68,42 +72,57 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.word}>{this.state.word}</Text>
-                <Text style={styles.title}>Pick one of these options.</Text>
+                <View style={{top: -150}}>
+                    <Text>Score: 4</Text>
+                </View>
+                <View style={{top: -100}}>
+                    <Text style={styles.word}>{this.state.word}</Text>
+                </View>
+                <View>
+                    <Text>Choose the correct pronunciation.</Text>
+                </View>
+                <View><Directions/></View>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Right Answer.')
-                            }}
-                                title="Option 1"/>
+                                    Alert.alert('Right Answer.')
+                                }}
+                                title="Omae" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Option 2"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Wa" />
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Option 3"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Mo" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Option 4"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Shin" />
                         </View>
 
                     </View>
+                </View>
+                <View>
+                    <Button style={{width: 50}}
+                        title='Submit'
+                        onPress={() => {
+                            Alert.alert('Please wait for submission functionality.')
+                        }} />
                 </View>
             </View>
         );
