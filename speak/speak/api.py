@@ -36,6 +36,7 @@ def word():
 
     # word = Word(random_word())
     word = Word("arroyo")
+
     # word.speak()
     # word.messup()
     l.debug("Displaying %s", word.word)

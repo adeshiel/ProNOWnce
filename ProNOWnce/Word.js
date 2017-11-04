@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     buttons: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        top: -50,
     },
     leftColumn: {
         flexDirection: 'column',
@@ -24,16 +25,16 @@ const styles = StyleSheet.create({
         margin: 20
     },
     btn: {
-        margin: 40
+        margin: 30,
+        width: 100
     },
     word: {
         fontSize: 40,
         margin: 10
     },
-    scoreBoard: {
-        top: -175,
-        width: 100,
-        height: 30
+    choicebuttons: {
+        marginLeft: 30,
+        marginRight: 30,
     }
 });
 
@@ -52,14 +53,6 @@ export default class Word extends React.Component {
         try {
             let res = await fetch(`${ENDPOINT_WORD}`);
             let resJSON = await res.json();
-            let prons = resJSON.pron.map((value, index) => `${ENDPOINT_PRON}/${value}`);
-
-            this.setState({
-                word: resJSON.word,
-                pron: prons,
-            });
-
-            console.log(prons);
 
             return resJSON.word;
         } catch (error) {
@@ -79,59 +72,76 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{
-                    top: -150
-                }}>
-                    <Text>Score: 4</Text>
+                <View style={{ top: -65 }}>
+                    <Text style={{ fontSize: 20, textAlign: 'center' }}>Score: 4</Text>
                 </View>
-                <View style={{
-                    top: -100
-                }}>
+                <View style={{ top: -65 }}>
                     <Text style={styles.word}>{this.state.word}</Text>
                 </View>
-                <View style={{
-                    top: -100
-                }}>
-                    <Text>Choose the correct pronunciation.</Text>
+                <View style={{ top: -45 }}>
+                    <Text style={{ fontStyle: 'italic' }}>Choose the correct pronunciation.</Text>
                 </View>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Right Answer.')
-                            }}
-                                title="Omae"/>
+                                    Alert.alert('Right Answer.')
+                                }}
+                                title="Choice 1" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Wa"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Choice 2" />
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Mo"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Choice 3" />
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                Alert.alert('Wrong Answer.')
-                            }}
-                                title="Shin"/>
+                                    Alert.alert('Wrong Answer.')
+                                }}
+                                title="Choice 4" />
                         </View>
-
                     </View>
                 </View>
-                <View style={{
-                    width: 100
-                }}>
+                <View style={{ flexDirection: 'row', top: -40 }}>
+                    <View style={styles.choicebuttons}>
+                        <Button
+                            title="1"
+                            onPress={() => {}}                            
+                        />
+                    </View>
+                    <View style={styles.choicebuttons}>
+                        <Button
+                            title="2"
+                            onPress={() => {}}                            
+                        />
+                    </View>
+                    <View style={styles.choicebuttons}>
+                        <Button
+                            title="3"
+                            onPress={() => {}}                            
+                        />
+                    </View>
+                    <View style={styles.choicebuttons}>
+                        <Button
+                            title="4"
+                            onPress={() => {}}
+                        />
+                    </View>
+                </View>
+                <View style={{ width: 100, top: -10}}>
                     <Button
                         title='Submit'
                         onPress={() => {
