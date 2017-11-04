@@ -1,8 +1,18 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button, Alert, TouchableHighlight} from 'react-native';
 
-const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
-const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
+
+//Replace whoosh with the link from APi
+// var whoosh = new Sound('http://72.19.107.126:5000/pron/arroyo-a', Sound.MAIN_BUNDLE, (error) => {
+//   if (error) {
+//     console.log('failed to load the sound', error);
+//     return;
+//   }
+//   // loaded successfully
+//   console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+// });
+
+const ENDPOINT = "http://72.19.107.126:5000/word"
 
 const styles = StyleSheet.create({
     container: {
@@ -10,11 +20,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     buttons: {
         flexDirection: 'row',
-        top: -50,
     },
     leftColumn: {
         flexDirection: 'column',
@@ -35,11 +44,7 @@ const styles = StyleSheet.create({
     choicebuttons: {
         marginLeft: 30,
         marginRight: 30,
-    },
-    selected: {
-        borderWidth: 1,
-        borderColor: 'red',
-    },
+    }
 });
 
 export default class Word extends React.Component {
@@ -63,9 +68,9 @@ export default class Word extends React.Component {
 
     async getWords() {
         try {
-            let res = await fetch(`${ENDPOINT_WORD}`);
+            let res = await fetch(`${ENDPOINT}`);
             let resJSON = await res.json();
-
+            this.setState({ word: resJSON.word });
             return resJSON.word;
         } catch (error) {
             console.log(error);
@@ -170,8 +175,8 @@ export default class Word extends React.Component {
                     <Button
                         title='Submit'
                         onPress={() => {
-                        Alert.alert('Please wait for submission functionality.')
-                    }}/>
+                            Alert.alert('Please wait for submission functionality.')
+                        }} />
                 </View>
             </View>
         );
