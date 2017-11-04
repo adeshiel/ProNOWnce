@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 
+const ENDPOINT = "http://72.19.107.126:5000/word"
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -25,6 +27,9 @@ const styles = StyleSheet.create({
     },
     btn: {
         margin: 40
+    },
+    word: {
+        fontSize: 40,
     }
 });
 
@@ -42,6 +47,7 @@ export default class Word extends React.Component {
         try {
             let res = await fetch(`${ENDPOINT}`);
             let resJSON = await res.json();
+            
 
             this.setState({word: resJSON.word});
             return resJSON.word;
@@ -62,6 +68,7 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Text style={styles.word}>{this.state.word}</Text>
                 <Text style={styles.title}>Pick one of these options.</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
