@@ -11,12 +11,12 @@ export default class Speech extends React.Component {
 
     }
 
-    playSound() {
+    playSound(url) {
         // ReactNativeAudioStreaming.play("http://72.19.107.126:5000/pron/squander",
         // {showIniOSMediaCenter: true, showInAndroidNotifications: true}); Load the
         // sound file 'whoosh.mp3' from the app bundle See notes below about preloading
         // sounds within initialization code below.
-        var whoosh = new Sound('http://72.19.107.126:5000/pron/squander', Sound.MAIN_BUNDLE, (error) => {
+        var whoosh = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
                 console.log('failed to load the sound', error);
                 return;

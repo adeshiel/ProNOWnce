@@ -46,7 +46,8 @@ export default class Word extends React.Component {
         this.state = {
             word: "",
             prons: [],
-            currentChoice: ""
+            currentChoice: "",
+            correctChoice: ""
         }
     }
 
@@ -54,6 +55,13 @@ export default class Word extends React.Component {
         try {
             let res = await fetch(`${ENDPOINT_WORD}`);
             let resJSON = await res.json();
+            let prons = resJSON
+                .pron
+                .map((value, index) => `${ENDPOINT_PRON}/${value}`);
+
+            this.setState({word: resJSON.word, pron: prons, correctChoice: resJSON.correct});
+
+            console.log(this.state);
 
             return resJSON.word;
         } catch (error) {
@@ -66,6 +74,34 @@ export default class Word extends React.Component {
         this.setState(() => {
             return {currentChoice: ix};
         });
+    }
+
+    playSound(url) {
+        // ReactNativeAudioStreaming.play("http://72.19.107.126:5000/pron/squander",
+        // {showIniOSMediaCenter: true, showInAndroidNotifications: true}); Load the
+        // sound file 'whoosh.mp3' from the app bundle See notes below about preloading
+        // sounds within initialization code below.
+        var whoosh = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
+            if (error) {
+                console.log('failed to load the sound', error);
+                return;
+            }
+            // loaded successfully
+            console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+
+            // Play the sound with an onEnd callback
+            whoosh.play((success) => {
+                if (success) {
+                    console.log('successfully finished playing');
+                } else {
+                    console.log('playback failed due to audio decoding errors');
+                    // reset the player to its uninitialized state (android only) this is the only
+                    // option to recover after an error occured and use the player again
+                    whoosh.reset();
+                }
+            });
+        });
+
     }
 
     componentDidMount() {
