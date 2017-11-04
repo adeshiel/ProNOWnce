@@ -19,7 +19,7 @@ export default class Word extends React.Component {
 
 const styles = StyleSheet.create({
     myView:{
-
+        width: 100,
     },
 });
 

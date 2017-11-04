@@ -78,7 +78,7 @@ export default class Word extends React.Component {
                 <View style={{top: -100}}>
                     <Text style={styles.word}>{this.state.word}</Text>
                 </View>
-                <View>
+                <View style={{top: -100}}>
                     <Text>Choose the correct pronunciation.</Text>
                 </View>
                 <View><Directions/></View>
@@ -117,8 +117,8 @@ export default class Word extends React.Component {
 
                     </View>
                 </View>
-                <View>
-                    <Button style={{width: 50}}
+                <View style={{width: 100}}>
+                    <Button
                         title='Submit'
                         onPress={() => {
                             Alert.alert('Please wait for submission functionality.')
