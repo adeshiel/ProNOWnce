@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-import {StyleSheet, Text, View, Button} from 'react-native';
 import Directions from './app/components/Buttons/Directions'
 
 const styles = StyleSheet.create({
@@ -11,12 +10,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    title: {
-        // paddingLeft: '5'
-    },
     buttons: {
         flexDirection: 'row',
-        // alignItems: 'center', justifyContent: 'space-around'
     },
     leftColumn: {
         flexDirection: 'column',
@@ -30,10 +25,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     scoreBoard: {
-        //alignContent: 'center',
-        //justifyContent: 'flex-start',
         top: -175,
-        //left: '5%',
         width: 100,
         height: 30,
     }
@@ -79,9 +71,10 @@ export default class Word extends React.Component {
                 <View style={{top: -100}}>
                     <Text>Word</Text>
                 </View>
-                <Text style={styles.title}>Choose the correct pronunciation.</Text>
+                <View>
+                    <Text>Choose the correct pronunciation.</Text>
+                </View>
                 <View><Directions/></View>
-                <Text style={styles.title}>Pick one of these options.</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
