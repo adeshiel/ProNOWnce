@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 
-const ENDPOINT = "http://72.19.107.126:5000/word";
+const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
+const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,10 +10,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     buttons: {
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     leftColumn: {
         flexDirection: 'column',
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     scoreBoard: {
         top: -175,
         width: 100,
-        height: 30,
+        height: 30
     }
 });
 
@@ -42,17 +43,24 @@ export default class Word extends React.Component {
         super(props, context);
 
         this.state = {
-            word: ""
+            word: "",
+            prons: []
         }
     }
 
     async getWords() {
         try {
-            let res = await fetch(`${ENDPOINT}`);
+            let res = await fetch(`${ENDPOINT_WORD}`);
             let resJSON = await res.json();
+            let prons = resJSON.pron.map((value, index) => `${ENDPOINT_PRON}/${value}`);
 
-            console.log(resJSON);
-            this.setState({ word: resJSON.word });
+            this.setState({
+                word: resJSON.word,
+                pron: prons,
+            });
+
+            console.log(prons);
+
             return resJSON.word;
         } catch (error) {
             console.log(error);
@@ -71,13 +79,19 @@ export default class Word extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{top: -150}}>
+                <View style={{
+                    top: -150
+                }}>
                     <Text>Score: 4</Text>
                 </View>
-                <View style={{top: -100}}>
+                <View style={{
+                    top: -100
+                }}>
                     <Text style={styles.word}>{this.state.word}</Text>
                 </View>
-                <View style={{top: -100}}>
+                <View style={{
+                    top: -100
+                }}>
                     <Text>Choose the correct pronunciation.</Text>
                 </View>
                 <View style={styles.buttons}>
@@ -85,42 +99,44 @@ export default class Word extends React.Component {
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Right Answer.')
-                                }}
-                                title="Omae" />
+                                Alert.alert('Right Answer.')
+                            }}
+                                title="Omae"/>
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Wrong Answer.')
-                                }}
-                                title="Wa" />
+                                Alert.alert('Wrong Answer.')
+                            }}
+                                title="Wa"/>
                         </View>
                     </View>
                     <View style={styles.rightColumn}>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Wrong Answer.')
-                                }}
-                                title="Mo" />
+                                Alert.alert('Wrong Answer.')
+                            }}
+                                title="Mo"/>
                         </View>
                         <View style={styles.btn}>
                             <Button
                                 onPress={() => {
-                                    Alert.alert('Wrong Answer.')
-                                }}
-                                title="Shin" />
+                                Alert.alert('Wrong Answer.')
+                            }}
+                                title="Shin"/>
                         </View>
 
                     </View>
                 </View>
-                <View style={{width: 100}}>
+                <View style={{
+                    width: 100
+                }}>
                     <Button
                         title='Submit'
                         onPress={() => {
-                            Alert.alert('Please wait for submission functionality.')
-                        }} />
+                        Alert.alert('Please wait for submission functionality.')
+                    }}/>
                 </View>
             </View>
         );
