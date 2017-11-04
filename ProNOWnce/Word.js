@@ -55,7 +55,8 @@ export default class Word extends React.Component {
         this.state = {
             word: "",
             prons: [],
-            pressStatus: false
+            pressStatus: false,
+            score: 0,
         }
     
     }
@@ -86,19 +87,14 @@ export default class Word extends React.Component {
     // sfx1,sfx2],[word2, sfx1,sfx2]] var chose =
     // words[Math.floor(Math.random()*words.length)]; return chose; }
     render() {
-        function changeButtonColor() {
-            if (this.color === 'blue') {
-                this.color = 'yellow';
-            }
-            else {
-                this.color = 'blue';
-            }
+        function checkCorrect() {
+
         }
         var buttonColor = 'blue'
         return (
             <View style={styles.container}>
                 <View style={{ top: -65 }}>
-                    <Text style={{ fontSize: 20, textAlign: 'center' }}>Score: 4</Text>
+                    <Text style={{ fontSize: 20, textAlign: 'center' }}>Score: {this.state.score}</Text>
                 </View>
                 <View style={{ top: -35 }}>
                     <Text style={styles.word}>{this.state.word}</Text>
@@ -176,7 +172,8 @@ export default class Word extends React.Component {
                         title='Submit'
                         onPress={() => {
                             Alert.alert('Please wait for submission functionality.')
-                        }} />
+                        }}
+                         />
                 </View>
             </View>
         );
