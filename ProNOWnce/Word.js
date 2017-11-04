@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import {StyleSheet, Text, View, Button, Alert} from 'react-native';
 
-const ENDPOINT = "http://72.19.107.126:5000/word"
+const ENDPOINT_WORD = "http://72.19.107.126:5000/word";
+const ENDPOINT_PRON = "http://72.19.107.126:5000/pron";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     buttons: {
         flexDirection: 'row',
@@ -43,17 +44,16 @@ export default class Word extends React.Component {
         super(props, context);
 
         this.state = {
-            word: ""
+            word: "",
+            prons: []
         }
     }
 
     async getWords() {
         try {
-            let res = await fetch(`${ENDPOINT}`);
+            let res = await fetch(`${ENDPOINT_WORD}`);
             let resJSON = await res.json();
 
-
-            this.setState({ word: resJSON.word });
             return resJSON.word;
         } catch (error) {
             console.log(error);
@@ -145,8 +145,8 @@ export default class Word extends React.Component {
                     <Button
                         title='Submit'
                         onPress={() => {
-                            Alert.alert('Please wait for submission functionality.')
-                        }} />
+                        Alert.alert('Please wait for submission functionality.')
+                    }}/>
                 </View>
             </View>
         );
