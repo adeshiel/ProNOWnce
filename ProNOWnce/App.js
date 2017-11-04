@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         bottom: '20%',
         fontStyle: 'italic',
         fontWeight: 'bold',
-        textDecorationLine: 'underline',
+        // textDecorationLine: 'underline',
         fontFamily: 'Roboto',
     },
 

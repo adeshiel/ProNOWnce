@@ -19,7 +19,7 @@ class Directions extends React.Component {
 
 const styles = StyleSheet.create({
     myView:{
-
+        width: 100,
     },
 });
 
