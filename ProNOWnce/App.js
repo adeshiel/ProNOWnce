@@ -1,14 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {StyleSheet, Text, View, Button} from 'react-native';
 
 const ENDPOINT = "http://72.19.107.126:5000/word";
 
-
-// function randoWord {
-//   var words = ["word", "curse", "jagged"];
-//   var chose = words[Math.floor(Math.random()*words.length)];
-//   return chose;
-//   }
+// function randoWord {   var words = ["word", "curse", "jagged"];   var chose =
+// words[Math.floor(Math.random()*words.length)];   return chose;   }
 
 export default class App extends React.Component {
 
@@ -20,15 +16,12 @@ export default class App extends React.Component {
         }
     }
 
-
     async getWords() {
         try {
             let res = await fetch(`${ENDPOINT}`);
             let resJSON = await res.json();
 
-            this.setState({
-                word: resJSON.word
-            });
+            this.setState({word: resJSON.word});
             return resJSON.word;
         } catch (error) {
             console.log(error);
@@ -39,9 +32,10 @@ export default class App extends React.Component {
         this.getWords();
     }
 
-    // randomWord(){ //for when we have the words to pronounce
-    //   var words = ["word", "curse", "jagged"]; //TODO: Change the list to format to [[word1, sfx1,sfx2],[word2,
-    // sfx1,sfx2]] var chose = words[Math.floor(Math.random()*words.length)]; return chose; }
+    // randomWord(){ //for when we have the words to pronounce   var words =
+    // ["word", "curse", "jagged"]; //TODO: Change the list to format to [[word1,
+    // sfx1,sfx2],[word2, sfx1,sfx2]] var chose =
+    // words[Math.floor(Math.random()*words.length)]; return chose; }
 
     render() {
         return (
@@ -49,26 +43,37 @@ export default class App extends React.Component {
                 <Text style={styles.title}>Pick one of these options.</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
-                        <Button
-                            onPress={() => { Alert.alert('Right Answer.') }}
-                            title="Option 1"
-                        />
-                        <Button
-                            onPress={() => { Alert.alert('Wrong Answer.') }}
-                            title="Option 2"
-                        />
-                        {/* </View> */}
-                        <View style={styles.rightColumn}>
+                        <View style={styles.btn}>
                             <Button
-                                onPress={() => { Alert.alert('Wrong Answer.') }}
-                                title="Option 3"
-                            />
-                            <Button
-                                onPress={() => { Alert.alert('Wrong Answer.') }}
-                                title="Option 4"
-                            />
-                            {/* </View> */}
+                                onPress={() => {
+                                Alert.alert('Right Answer.')
+                            }}
+                                title="Option 1"/>
                         </View>
+                        <View style={styles.btn}>
+                            <Button
+                                onPress={() => {
+                                Alert.alert('Wrong Answer.')
+                            }}
+                                title="Option 2"/>
+                        </View>
+                    </View>
+                    <View style={styles.rightColumn}>
+                        <View style={styles.btn}>
+                            <Button
+                                onPress={() => {
+                                Alert.alert('Wrong Answer.')
+                            }}
+                                title="Option 3"/>
+                        </View>
+                        <View style={styles.btn}>
+                            <Button
+                                onPress={() => {
+                                Alert.alert('Wrong Answer.')
+                            }}
+                                title="Option 4"/>
+                        </View>
+
                     </View>
                 </View>
             </View>
@@ -80,30 +85,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'center', 
+        justifyContent: 'center'
     },
     title: {
         // paddingLeft: '5'
-      },
-      buttons: {
+    },
+    buttons: {
+        flexDirection: 'row',
+        // alignItems: 'center', justifyContent: 'space-around'
+    },
+    leftColumn: {
         flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-      },
-      leftColumn: {
+        margin: 20
+    },
+    rightColumn: {
         flexDirection: 'column',
-        right: 50,
-        top: 70,
-        alignContent: 'space-between',
-      },
-      rightColumn: {
-        flexDirection: 'column',
-        left: 100,
-        bottom: 70,
-        alignContent: 'space-between',
-      },
-      boxes: {
-        marginBottom: 150,
-      }
+        margin: 20
+    },
+    btn: {
+        margin: 40,
+    }
 });
