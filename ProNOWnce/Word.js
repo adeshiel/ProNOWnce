@@ -1,29 +1,68 @@
 import React from 'react';
-<<<<<<< HEAD
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-=======
-import {StackNavigator} from 'react-navigation';
 import {StyleSheet, Text, View, Button} from 'react-native';
-import Word from './Word';
->>>>>>> bbdc5c00dac97bd9ada6cfdf35d75b252032a965
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    title: {
+        // paddingLeft: '5'
+    },
+    buttons: {
+        flexDirection: 'row',
+        // alignItems: 'center', justifyContent: 'space-around'
+    },
+    leftColumn: {
+        flexDirection: 'column',
+        margin: 20
+    },
+    rightColumn: {
+        flexDirection: 'column',
+        margin: 20
+    },
+    btn: {
+        margin: 40
+    }
+});
 
-<<<<<<< HEAD
-export default class App extends React.Component {
-=======
+export default class Word extends React.Component {
 
->>>>>>> bbdc5c00dac97bd9ada6cfdf35d75b252032a965
+    constructor(props, context) {
+        super(props, context);
 
-class Home extends React.Component {
-    static navigationOptions = {
-        title: 'Welcome',
-      };
-      render() {
-        const { navigate } = this.props.navigation;
+        this.state = {
+            word: ""
+        }
+    }
+
+    async getWords() {
+        try {
+            let res = await fetch(`${ENDPOINT}`);
+            let resJSON = await res.json();
+
+            this.setState({word: resJSON.word});
+            return resJSON.word;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    componentDidMount() {
+        this.getWords();
+    }
+
+    // randomWord(){ //for when we have the words to pronounce   var words =
+    // ["word", "curse", "jagged"]; //TODO: Change the list to format to [[word1,
+    // sfx1,sfx2],[word2, sfx1,sfx2]] var chose =
+    // words[Math.floor(Math.random()*words.length)]; return chose; }
+
+    render() {
         return (
-<<<<<<< HEAD
             <View style={styles.container}>
-                <Text style={styles.title}>{this.state.word}</Text>
+                <Text style={styles.title}>Pick one of these options.</Text>
                 <View style={styles.buttons}>
                     <View style={styles.leftColumn}>
                         <View style={styles.btn}>
@@ -60,51 +99,6 @@ class Home extends React.Component {
                     </View>
                 </View>
             </View>
-=======
-          <Button
-            title="Go to Jane's profile"
-            onPress={() =>
-              navigate('Profile', { name: 'Jane' })
-            }
-          />
->>>>>>> bbdc5c00dac97bd9ada6cfdf35d75b252032a965
         );
-      }
-}
-
-<<<<<<< HEAD
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    title: {
-        // paddingLeft: '5'
-    },
-    buttons: {
-        flexDirection: 'row',
-        // alignItems: 'center', justifyContent: 'space-around'
-    },
-    leftColumn: {
-        flexDirection: 'column',
-        margin: 20
-    },
-    rightColumn: {
-        flexDirection: 'column',
-        margin: 20
-    },
-    btn: {
-        margin: 40,
     }
-});
-=======
-const App = StackNavigator({
-    Home: { screen: Home },
-    Profile: { screen: Word },
-  });
-
-
-export default App;
->>>>>>> bbdc5c00dac97bd9ada6cfdf35d75b252032a965
+}
