@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
+
+import Directions from './app/components/Buttons/Directions'
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -51,9 +54,13 @@ class HomeScreen extends React.Component {
                         onPress={() => navigate('About')}
                         title="What's this?"/>
                   </View>
-
+                  <View style={styles.btn}>
+                    <Button
+                        onPress={() => navigate('Directions')}
+                        title="Directions"/>
                   </View>
-
+                  </View>
+                  
             </View>
         );
     }
@@ -62,6 +69,7 @@ class HomeScreen extends React.Component {
 const App = StackNavigator({
   Home: { screen: HomeScreen },
   Word: { screen: Word },
+  Directions: { screen: Directions},
 })
 
 export default App;
