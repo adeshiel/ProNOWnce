@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Word from './Word';
-
+import Speak from './Speak';
 import Directions from './app/components/Buttons/Directions';
 
 const styles = StyleSheet.create({
@@ -54,6 +54,12 @@ class HomeScreen extends React.Component {
                         title="What's this?"/>
                   </View>
 
+                  <View style={styles.btn}>
+                    <Button
+                        onPress={() => navigate('Speak')}
+                        title="Say Something"/>
+                  </View>
+
                   </View>
 
             </View>
@@ -65,6 +71,7 @@ const App = StackNavigator({
   Home: { screen: HomeScreen },
   Word: { screen: Word },
   About: { screen: Directions},
+  Speak: { screen: Speak },
 })
 
 export default App;
