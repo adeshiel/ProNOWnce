@@ -25,3 +25,9 @@ To run the server, just install the `requirements.txt` and run the `api.py` file
 - Run the server
 
     `python api.py`
+
+## But AWS is an another story
+
+- While you are setting up your AWS server, you might also want to setup the `virtualenv` and run the server inside it.
+- Remember to open port `5000`.
+- Take note of the IP address of your AWS instance. We will need to fill this in to the constant in the app itself.
