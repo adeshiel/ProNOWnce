@@ -48,5 +48,5 @@ def word():
 
 if __name__ == '__main__':
     logging.basicConfig(format='[%(asctime)s][%(levelname)s]: %(message)s',
-                        level=logging.INFO)
+                        level=logging.DEBUG)
     app.run(debug=True, host="0.0.0.0")
