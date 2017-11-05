@@ -49,7 +49,15 @@ def save_pron(res, filename):
     :param filename:
     :return: path to the file saved
     """
+
+    # Make sure the path exist
+    dirpath = os.path.join(os.getcwd(), "prons")
+    if not os.path.exists(dirpath):
+        l.info("Creating folder %s" % dirpath)
+        os.mkdir(dirpath)
+
     with closing(res["AudioStream"]) as stream:
+
         output = os.path.join(os.getcwd(), "prons", "{filename}.mp3".format(filename=filename))
         l.debug("Saving %s", filename)
         l.debug("Data %s", res)
