@@ -12,3 +12,16 @@ In general, the structure of the server is as follows:
 - Push all of the pronunciations to the Amazon Speech Synthesis
 - Store these result and expose the result through a Web API endpoint.
 
+## Setup and run
+
+**Important**: We haven't try to run this on Python lower than **3.6**
+
+To run the server, just install the `requirements.txt` and run the `api.py` file.
+
+- Install the required packages
+
+    `pip install -r requirements.txt`
+    
+- Run the server
+
+    `python api.py`
