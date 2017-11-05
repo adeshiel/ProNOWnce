@@ -23,7 +23,7 @@ def pron(word):
     :return:
     """
 
-    return send_from_directory('prons', word + ".mp3")
+    return send_from_directory('prons', word + ".mp3", mimetype="audio/mpeg")
 
 
 @app.route('/word')
@@ -34,15 +34,16 @@ def word():
     :return:
     """
 
-    word = Word("arroyo")
+    word = Word(random_word())
+    # word = Word("arroyo")
 
-    # word.speak()
-    # word.messup()
+    word.speak()
+    word.messup()
     l.debug("Displaying %s", word.word)
 
     prons = sorted([word.word, word.word + "-a", word.word + "-b", word.word + "-c"], key=lambda x: random.random())
 
-    return jsonify({"word": word.word, "pron": prons, "correct": 0})
+    return jsonify({"word": word.word, "pron": prons, "correct": prons.index(word.word)})
 
 
 if __name__ == '__main__':
