@@ -1,9 +1,4 @@
-from pprint import pprint
-
-from pywiktionary import Wiktionary
 import random
-
-wikt = Wiktionary(XSAMPA=True)
 
 
 def load_wordlist(path):
@@ -35,10 +30,6 @@ def random_word():
     return WL[ix]
 
 
-
-
 if __name__ == '__main__':
-    # word = wikt.lookup("dictionary")
-    # pprint(word)
     for i in range(10):
         print(random_word())
