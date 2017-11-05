@@ -7,7 +7,7 @@ import logging
 import random
 from flask import Flask, jsonify, send_from_directory
 
-from dict import random_word
+from dictionary import random_word
 from speech import Word
 
 app = Flask(__name__, static_url_path='')
