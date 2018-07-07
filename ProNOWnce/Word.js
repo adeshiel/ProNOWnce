@@ -14,8 +14,10 @@ import {default as Sound} from 'react-native-sound';
 //   console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
 // });
 
-const ENDPOINT = "http://72.19.107.126:5000/word"
-const ENDPOINT_PRON = "http://72.19.107.126:5000/pron"
+const SERVER="34.207.92.4";
+const LOCAL="72.19.107.126";
+const ENDPOINT = `http://${SERVER}:5000/word`;
+const ENDPOINT_PRON = `http://${SERVER}:5000/pron`;
 
 const styles = StyleSheet.create({
     container: {

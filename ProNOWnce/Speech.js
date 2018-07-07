@@ -12,11 +12,8 @@ export default class Speech extends React.Component {
     }
 
     playSound(url) {
-        // ReactNativeAudioStreaming.play("http://72.19.107.126:5000/pron/squander",
-        // {showIniOSMediaCenter: true, showInAndroidNotifications: true}); Load the
-        // sound file 'whoosh.mp3' from the app bundle See notes below about preloading
-        // sounds within initialization code below.
-        var whoosh = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
+
+        let whoosh = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
                 console.log('failed to load the sound', error);
                 return;
@@ -32,13 +29,15 @@ export default class Speech extends React.Component {
                     console.log('playback failed due to audio decoding errors');
                     // reset the player to its uninitialized state (android only) this is the only
                     // option to recover after an error occured and use the player again
-                    whoosh.reset();
+                    // whoosh.reset();
                 }
             });
         });
 
     }
-    componentDidMount() {}
+
+    componentDidMount() {
+    }
 
     render() {
         return (
